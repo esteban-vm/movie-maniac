@@ -1,39 +1,50 @@
 import Image from 'next/image'
 import { Fire } from '@/images'
 
+interface SelectBoxProps {
+  options: Capitalize<string>[]
+}
+
+function SelectBox({ options }: SelectBoxProps) {
+  return (
+    <select className='bg-yellow-500 font-semibold text-black outline-none hover:opacity-85 md:px-3 md:py-1'>
+      {options.map((option) => (
+        <option key={crypto.randomUUID()} value='' className='font-medium uppercase'>
+          {option}
+        </option>
+      ))}
+    </select>
+  )
+}
+
 export default function MovieList() {
   return (
-    <section className=''>
-      <header className='mb-1 flex items-center justify-between px-8 py-3'>
-        <h2 className='flex items-center text-2xl font-semibold text-yellow-500'>
-          Popular <Image src={Fire} alt='fire emoji' className='ml-2 size-6' />
+    <section className='row-span-11 text-sm sm:text-sm md:text-base'>
+      <header className='flex items-center justify-between'>
+        <h2 className='text-sm font-medium text-yellow-500 sm:text-base md:text-lg lg:text-xl xl:text-2xl'>
+          Popular
+          <Image
+            src={Fire}
+            alt='fire emoji'
+            className='ml-1 inline size-4 select-none align-text-top sm:size-5 md:size-6 lg:size-6 xl:size-7'
+          />
         </h2>
-        <div className='flex items-center'>
-          <ul className='flex flex-row items-center text-base'>
-            <li className='cursor-pointer border-b border-white/40 px-3 py-1 font-medium'>8+ Star</li>
-            <li className='cursor-pointer px-3 py-1'>7+ Star</li>
-            <li className='cursor-pointer px-3 py-1'>6+ Star</li>
+        <div className='flex gap-2 sm:gap-3 md:gap-4'>
+          <ul className=''>
+            {[8, 7, 6].map((item) => (
+              <li
+                key={crypto.randomUUID()}
+                className='inline cursor-pointer align-text-top even:mx-2 hover:opacity-85 md:even:mx-4'
+              >
+                {item}+ Star
+              </li>
+            ))}
           </ul>
-          <select
-            name=''
-            id=''
-            className='mx-3 my-0 h-8 rounded-md border-none px-1 py-0 text-base font-medium text-black outline-none'
-          >
-            <option value=''>Sort By</option>
-            <option value=''>Date</option>
-            <option value=''>Rating</option>
-          </select>
-          <select
-            name=''
-            id=''
-            className='mx-3 my-0 h-8 rounded-md border-none px-1 py-0 text-base font-medium text-black outline-none'
-          >
-            <option value=''>Ascending</option>
-            <option value=''>Descending</option>
-          </select>
+          <SelectBox options={['Sort By', 'Date', 'Rating']} />
+          <SelectBox options={['Ascending', 'Descending']} />
         </div>
       </header>
-      <div></div>
+      <div>List</div>
     </section>
   )
 }
