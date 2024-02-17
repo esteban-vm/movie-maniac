@@ -16,7 +16,9 @@
     "import/order": [
       "warn",
       { "groups": ["type", "builtin", "external", "internal", ["sibling", "parent"], "index", "unknown"] }
-    ]
+    ],
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off"
   },
   "ignorePatterns": ["node_modules", "build", "public", ".next"],
   "settings": { "import/resolver": { "typescript": true } }

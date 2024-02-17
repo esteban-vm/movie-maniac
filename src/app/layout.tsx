@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body className={montserrat.className}>
-        <main className='container mx-auto grid h-screen grid-rows-12 bg-black/80 p-2 sm:p-3 md:p-3 lg:p-4 xl:p-5'>
+        <main className='container mx-auto min-h-screen bg-black/80 p-2 sm:p-3 md:p-3 lg:p-4 xl:p-5'>
           <Navbar />
           {children}
         </main>
