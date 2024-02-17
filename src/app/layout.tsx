@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import localFont from 'next/font/local'
-import { Navbar } from '@/components'
+import { Navbar, Header } from '@/components'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={montserrat.className}>
         <main className='container mx-auto min-h-screen bg-black/80 p-2 sm:p-3 md:p-3 lg:p-4 xl:p-5'>
           <Navbar />
+          <Header />
           {children}
         </main>
       </body>
