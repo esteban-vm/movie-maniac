@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { Fire } from '@/images'
 
@@ -17,14 +18,19 @@ function SelectBox({ options }: SelectBoxProps) {
   )
 }
 
-export default function MovieList() {
+interface MovieListProps {
+  children: ReactNode
+}
+
+export default function MovieList({ children }: MovieListProps) {
   return (
-    <section className='row-span-11 text-sm sm:text-sm md:text-base'>
-      <header className='flex items-center justify-between'>
+    <>
+      <header className='flex items-center justify-between text-sm sm:text-sm md:text-base'>
         <h2 className='text-sm font-medium text-yellow-500 sm:text-base md:text-lg lg:text-xl xl:text-2xl'>
           Popular
           <Image
             src={Fire}
+            width={480}
             alt='fire emoji'
             className='ml-1 inline size-4 select-none align-text-top sm:size-5 md:size-6 lg:size-6 xl:size-7'
           />
@@ -44,7 +50,9 @@ export default function MovieList() {
           <SelectBox options={['Ascending', 'Descending']} />
         </div>
       </header>
-      <div>List</div>
-    </section>
+      <div className='grid h-full gap-1 py-2 sm:grid-cols-2 sm:py-3 md:grid-cols-3 md:gap-2 md:py-3 lg:grid-cols-4 lg:py-4 xl:grid-cols-5 xl:py-5 2xl:grid-cols-6'>
+        {children}
+      </div>
+    </>
   )
 }
