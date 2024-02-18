@@ -1,26 +1,41 @@
-import type { MovieData, MovieListName, MovieListResponse } from '@/types'
+import type { Movie } from 'tmdb-ts'
 import { NextResponse } from 'next/server'
+import { TMDB } from 'tmdb-ts'
+
+const tmdb = new TMDB(process.env.ACCESS_TOKEN!)
+type MovieListName = 'popular' | 'top_rated' | 'upcoming'
 
 export const handleRequest = (list: MovieListName) => {
   return async () => {
-    const url = <const>`https://api.themoviedb.org/3/movie/${list}?language=en-US&page=1`
+    try {
+      let movies: Movie[]
 
-    const options: RequestInit = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      },
+      switch (list) {
+        case 'popular': {
+          void ({ results: movies } = await tmdb.movies.popular())
+          break
+        }
+
+        case 'top_rated': {
+          void ({ results: movies } = await tmdb.movies.topRated())
+          break
+        }
+
+        case 'upcoming': {
+          void ({ results: movies } = await tmdb.movies.upcoming())
+          break
+        }
+      }
+
+      return NextResponse.json(movies)
+    } catch {
+      return []
     }
-
-    const response = await fetch(url, options)
-    const { results }: MovieListResponse = await response.json()
-    return NextResponse.json(results, { status: 200 })
   }
 }
 
 export const getMoviesByList = async (list: MovieListName) => {
   const response = await fetch(`${process.env.BASE_URL}/api/movies/${list}`)
-  const movies: MovieData[] = await response.json()
+  const movies: Movie[] = await response.json()
   return movies
 }
