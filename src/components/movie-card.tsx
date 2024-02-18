@@ -1,9 +1,16 @@
-import type { Movie } from '@/types'
+import type { MovieData } from '@/types'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Star } from '@/images'
 
-export default function MovieCard({ id, poster_path, original_title, release_date, vote_average, overview }: Movie) {
+export default function MovieCard({
+  id,
+  poster_path,
+  original_title,
+  release_date,
+  vote_average,
+  overview,
+}: MovieData) {
   return (
     <Link
       href={`/${id}`}

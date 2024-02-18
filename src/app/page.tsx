@@ -1,14 +1,8 @@
-import type { Movie } from '@/types'
 import { MovieList, MovieCard } from '@/components'
-
-const fetchPopularMovies = async () => {
-  const response = await fetch(`${process.env.BASE_URL}/api/movies/popular`)
-  const data: Movie[] = await response.json()
-  return data
-}
+import { getMoviesByList } from '@/utils'
 
 export default async function Home() {
-  const movies = await fetchPopularMovies()
+  const movies = await getMoviesByList('popular')
 
   return (
     <MovieList>
