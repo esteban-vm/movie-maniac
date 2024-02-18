@@ -1,4 +1,4 @@
-export interface Movie {
+export interface MovieData {
   adult: boolean
   backdrop_path: string
   genre_ids: number[]
@@ -15,18 +15,15 @@ export interface Movie {
   vote_count: number
 }
 
-interface ApiResponse {
-  page: number
-  results: Movie[]
-  total_pages: number
-  total_results: number
-}
+export type MovieListName = 'popular' | 'top_rated' | 'upcoming'
 
-export interface UpcomingMovieList extends ApiResponse {
-  dates: {
+export interface MovieListResponse {
+  dates?: {
     maximum: string
     minimum: string
   }
+  page: number
+  results: MovieData[]
+  total_pages: number
+  total_results: number
 }
-
-export type { ApiResponse as PopularMovieList, ApiResponse as TopRatedMovieList }
