@@ -1,16 +1,20 @@
+import type { Movie } from '@/types'
 import { MovieList, MovieCard } from '@/components'
 
-const txt3 =
-  'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam dignissimos earum laudantium unde suscipit? Eum natus sequi nostrum pariatur? Odio ut delectus, aliquam deserunt fugit non illum quo harum quos voluptatem repellat sit deleniti obcaecati, similique molestias maxime? Hic illo saepe eum enim quisquam iusto tempore quidem itaque! Quaerat, repudiandae.'
+const fetchPopularMovies = async () => {
+  const response = await fetch(`${process.env.BASE_URL}/api/movies/popular`)
+  const data: Movie[] = await response.json()
+  return data
+}
 
-export default function Home() {
+export default async function Home() {
+  const movies = await fetchPopularMovies()
+
   return (
     <MovieList>
-      {Array(6)
-        .fill(null)
-        .map(() => (
-          <MovieCard key={crypto.randomUUID()} image='test' text={txt3} />
-        ))}
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} {...movie} />
+      ))}
     </MovieList>
   )
 }
