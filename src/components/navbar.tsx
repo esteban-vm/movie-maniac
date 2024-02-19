@@ -1,20 +1,19 @@
 import type { StaticImageData } from 'next/image'
-import type { PageNames } from '@/constants'
+import type { MovieListName } from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Fire, GlowingStart, PartyingFace } from '@/images'
 
 interface NavLinkProps {
-  title: (typeof PageNames)[number]
+  title: MovieListName
   image: StaticImageData
-  link: string
   alt: string
 }
 
-function NavLink({ title, image, link, alt }: NavLinkProps) {
+function NavLink({ title, image, alt }: NavLinkProps) {
   return (
-    <Link href={link} className='inline hover:opacity-85'>
-      {title}
+    <Link href={title === 'popular' ? '/' : `/${title}`} className='inline capitalize hover:opacity-85'>
+      {title.replace('_', ' ')}
       <Image
         src={image}
         alt={`${alt} emoji`}
@@ -25,9 +24,9 @@ function NavLink({ title, image, link, alt }: NavLinkProps) {
 }
 
 const links: NavLinkProps[] = [
-  { title: 'Popular', image: Fire, link: '/', alt: 'fire' },
-  { title: 'Top Rated', image: GlowingStart, link: '/', alt: 'glowing star' },
-  { title: 'Upcoming', image: PartyingFace, link: '/', alt: 'partying face' },
+  { title: 'popular', image: Fire, alt: 'fire' },
+  { title: 'top_rated', image: GlowingStart, alt: 'glowing star' },
+  { title: 'upcoming', image: PartyingFace, alt: 'partying face' },
 ]
 
 export default function Navbar() {
