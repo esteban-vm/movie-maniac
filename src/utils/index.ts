@@ -1,9 +1,9 @@
 import type { Movie } from 'tmdb-ts'
+import type { MovieListName } from '@/constants'
 import { NextResponse } from 'next/server'
 import { TMDB } from 'tmdb-ts'
 
 const { movies } = new TMDB(process.env.ACCESS_TOKEN!)
-type MovieListName = 'popular' | 'top_rated' | 'upcoming'
 
 export const handleRequest = (list: MovieListName) => {
   return async () => {
