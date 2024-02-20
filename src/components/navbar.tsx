@@ -1,5 +1,5 @@
 import type { StaticImageData } from 'next/image'
-import type { MovieListName } from '@/constants'
+import type { MovieListName } from '@/utils'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Fire, GlowingStart, PartyingFace } from '@/images'

@@ -1,17 +1,5 @@
-import { Header, MovieList, MovieCard } from '@/components'
-import { getMoviesByList } from '@/utils'
+import { MoviesContainer } from '@/views'
 
-export default async function Upcoming() {
-  const movies = await getMoviesByList('upcoming')
-
-  return (
-    <>
-      <Header title='upcoming' />
-      <MovieList>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} {...movie} />
-        ))}
-      </MovieList>
-    </>
-  )
+export default function Upcoming() {
+  return <MoviesContainer list='upcoming' />
 }
