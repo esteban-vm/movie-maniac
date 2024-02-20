@@ -1,5 +1,5 @@
 import { MoviesContainer } from '@/views'
 
-export default function TopRated() {
+export default function TopRatedMoviesPage() {
   return <MoviesContainer list='top_rated' />
 }

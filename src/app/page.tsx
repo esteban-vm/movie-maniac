@@ -1,5 +1,5 @@
 import { MoviesContainer } from '@/views'
 
-export default function Home() {
+export default function PopularMoviesPage() {
   return <MoviesContainer list='popular' />
 }
