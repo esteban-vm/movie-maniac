@@ -36,7 +36,8 @@ export const handleRequest = (list: MovieListName) => {
 }
 
 export const getMoviesByList = async (list: MovieListName) => {
-  const response = await fetch(`${process.env.BASE_URL}/api/movies/${list}`)
+  const listName = list === 'popular' ? '' : `/${list}`
+  const response = await fetch(`${process.env.BASE_URL}/api/movies${listName}`)
   const movies: Movie[] = await response.json()
   return movies
 }
