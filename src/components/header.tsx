@@ -1,4 +1,4 @@
-import type { MovieListName } from '@/constants'
+import type { MovieListName } from '@/utils'
 import Image from 'next/image'
 import { Fire } from '@/images'
 
