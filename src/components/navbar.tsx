@@ -1,24 +1,14 @@
-import type { StaticImageData } from 'next/image'
-import type { MovieListName } from '@/utils'
+import type { ListTitleProps } from '@/common'
 import Link from 'next/link'
-import Image from 'next/image'
+import { ListTitle } from '@/common'
 import { Fire, GlowingStart, PartyingFace } from '@/images'
 
-interface NavLinkProps {
-  title: MovieListName
-  image: StaticImageData
-  alt: string
-}
+type NavLinkProps = Omit<ListTitleProps, 'className'>
 
-function NavLink({ title, image, alt }: NavLinkProps) {
+function NavLink({ title, ...rest }: NavLinkProps) {
   return (
     <Link href={title === 'popular' ? '/' : `/${title}`} className='inline capitalize hover:opacity-85'>
-      {title.replace('_', ' ')}
-      <Image
-        src={image}
-        alt={`${alt} emoji`}
-        className='ml-1 inline size-3 select-none align-middle sm:size-4 md:size-5'
-      />
+      <ListTitle title={title} className='ml-1 inline size-3 select-none align-middle sm:size-4 md:size-5' {...rest} />
     </Link>
   )
 }
