@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const montserrat = localFont({
-  src: '../fonts/Montserrat.woff2',
+  src: '../assets/fonts/montserrat.woff2',
   display: 'swap',
   fallback: ['sans-serif'],
 })
