@@ -30,7 +30,7 @@ export const handleRequest = (list: MovieListName) => {
 
       return NextResponse.json(results)
     } catch {
-      return null
+      return
     }
   }
 }
@@ -43,7 +43,5 @@ export const getMoviesByList = async (list: MovieListName) => {
 }
 
 const getBaseUrl = () => {
-  return process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  return process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://${process.env.VERCEL_URL}`
 }
