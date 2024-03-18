@@ -37,7 +37,13 @@ export const handleRequest = (list: MovieListName) => {
 
 export const getMoviesByList = async (list: MovieListName) => {
   const listName = list === 'popular' ? '' : `/${list}`
-  const response = await fetch(`${process.env.BASE_URL}/api/movies${listName}`)
+  const response = await fetch(`${getBaseUrl()}/api/movies${listName}`)
   const movies: Movie[] = await response.json()
   return movies
+}
+
+const getBaseUrl = () => {
+  return process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
 }
