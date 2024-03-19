@@ -10,9 +10,7 @@ export default async function MoviesContainer({ list }: { list: MovieListName })
       <Components.Navbar />
       <Components.Header title={list} />
       <Components.MovieList>
-        {movies.map((movie) => (
-          <Components.MovieCard key={crypto.randomUUID()} {...movie} />
-        ))}
+        {movies?.map((movie) => <Components.MovieCard key={crypto.randomUUID()} {...movie} />)}
       </Components.MovieList>
     </>
   )

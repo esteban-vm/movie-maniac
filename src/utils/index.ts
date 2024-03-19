@@ -4,7 +4,8 @@ import { TMDB } from 'tmdb-ts'
 
 export type MovieListName = 'upcoming' | 'popular' | 'top_rated'
 
-const { movies } = new TMDB(process.env.ACCESS_TOKEN!)
+const { ACCESS_TOKEN: token, NEXT_PUBLIC_BASE_API_URL: apiUrl } = process.env
+const { movies } = new TMDB(token!)
 
 export const handleRequest = (list: MovieListName) => {
   return async () => {
@@ -36,12 +37,9 @@ export const handleRequest = (list: MovieListName) => {
 }
 
 export const getMoviesByList = async (list: MovieListName) => {
+  if (!apiUrl) return null
   const listName = list === 'popular' ? '' : `/${list}`
-  const response = await fetch(`${getBaseUrl()}/api/movies${listName}`)
+  const response = await fetch(`${apiUrl}/api/movies${listName}`)
   const movies: Movie[] = await response.json()
   return movies
-}
-
-const getBaseUrl = () => {
-  return process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : `https://${process.env.VERCEL_URL}`
 }
